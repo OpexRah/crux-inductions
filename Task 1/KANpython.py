@@ -41,6 +41,32 @@ class KAN:
             # Compute the B-spline basis function for the i-th segment
             b_spline = interpolate.BSpline.basis_element(knots[i:i + self.degree + 1])
             basis.append(b_spline)
-
+        print(f"There are {len(basis)} basis B-Splines for the given grid configuration")
         return basis
 
+    def forward_prop(self, x):
+        """
+        This function computes the B-spline at the given x and then multiplies it with the coefficients
+        to return the output
+        """
+        output = 0
+        for i in range(len(self.bspline_basis)):
+            output += self.bspline_basis[i](x)*self.coefficients[i]
+
+        return output
+    
+    def backward_prop(self, x, deriv):
+        """
+        This is the gradient decent part where we compute the gradient of the loss function with respect to the coefficients
+
+        Loss Function: L
+        Gradient of L with respect to coefficients: dL/dc_i = dL/dB * dB/dc_i (chain rule) where B is the spline function
+        Since B is a linear combination of basis functions, dB/dc_i is the basis function itself
+        So, dL/dc_i = dL/dB * B_i
+
+        deriv: dL/dB
+        x: input data to evaluate B
+        """
+        gradient = np.array([np.sum(deriv * self.bspline_basis[i](x)) for i in range(len(self.bspline_basis))])
+        return gradient
+    
