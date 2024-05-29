@@ -15,6 +15,7 @@ class KAN:
 
         """
         Any BSpline can be defined as a linear combination of B-spline basis functions.
+        
         B(t) = c0*B0(t) + c1*B1(t) + c2*B2(t) + ... + cn*Bn(t)
         where B(t) is the B-spline, B0(t), B1(t), B2(t), ..., Bn(t) are the basis functions
         and c0, c1, c2, ..., cn are the coefficients.
