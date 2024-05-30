@@ -105,3 +105,5 @@ class KAN:
             plt.legend()
         plt.show()
     
+    def prune(self):
+        self.coefficients = np.random.randn(len(self.bspline_basis))
