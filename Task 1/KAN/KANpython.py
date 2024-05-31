@@ -105,5 +105,39 @@ class KAN:
             plt.legend()
         plt.show()
     
-    def prune(self):
+    def reset(self):
+        """
+        Reset the coefficients to random values
+        """
         self.coefficients = np.random.randn(len(self.bspline_basis))
+        
+    def construct_learning_video(self, x_train, y_train, path, epochs, learning_rate):
+
+        """
+        This function trains the model and saves the output at each epoch as an image in the given path
+        Image sequence is later converted to a video to visualize the training process
+        """
+
+        self.reset()
+
+        for epoch in range(epochs):
+            activations = self.forward_prop(x_train)
+            deriv = 2 * (activations - y_train) / len(x_train)
+            gradients = self.backward_prop(x_train, deriv)
+            self.coefficients -= learning_rate * gradients
+
+            mean_swquared_error = np.mean((y_train - activations)**2)
+
+            # make a plot and save the image to directory
+            plt.plot(x_train, activations, label="Predicted output")
+            plt.ylim(-1, 500)
+            plt.plot(x_train, y_train , label="Ideal Function", linestyle='dashed')
+            plt.title(f'Epoch {epoch}/{epochs}, Loss: {mean_swquared_error}')
+            plt.xlabel("x")
+            plt.ylabel("y")
+            plt.legend()
+            plt.savefig(f'{path}/epoch_{epoch:04d}.png')
+            plt.clf()
+            print(f'Frame {epoch}/{epochs} saved to {path}')
+
+        
