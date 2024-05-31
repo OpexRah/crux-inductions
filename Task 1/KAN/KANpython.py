@@ -111,7 +111,7 @@ class KAN:
         """
         self.coefficients = np.random.randn(len(self.bspline_basis))
         
-    def construct_learning_video(self, x_train, y_train, path, epochs, learning_rate):
+    def construct_learning_video(self, x_train, y_train, path, epochs, learning_rate, y_lim: tuple = None):
 
         """
         This function trains the model and saves the output at each epoch as an image in the given path
@@ -130,7 +130,8 @@ class KAN:
 
             # make a plot and save the image to directory
             plt.plot(x_train, activations, label="Predicted output")
-            plt.ylim(-1, 500)
+            if y_lim is not None:
+                plt.ylim(y_lim)
             plt.plot(x_train, y_train , label="Ideal Function", linestyle='dashed')
             plt.title(f'Epoch {epoch}/{epochs}, Loss: {mean_swquared_error}')
             plt.xlabel("x")
