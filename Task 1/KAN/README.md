@@ -27,4 +27,4 @@ Here are some visuals of how the model learns some functions:
 ![](https://github.com/OpexRah/crux-inductions/blob/main/Task%201/KAN/Visualisation/expxplusexpmx.gif)
 
 ### KAN implementation with pykan library
-The ```KAN_pykan.ipynb``` file contains the implementation and testing with the pykan library. The testing has been done with the iris dataset. The model got an accuracy of about 91% on the test dataset
+The ```KAN_pykan.ipynb``` file contains the implementation and testing with the pykan library. The testing has been done with the iris dataset. The model got an accuracy of about 91% on the test dataset. The ```gridsearch.py``` file contains the code for running gridsearch on the pykan model.
