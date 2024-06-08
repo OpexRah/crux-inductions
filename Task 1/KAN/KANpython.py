@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import interpolate
 
-class KAN:
+class KAN_python:
     def __init__(self, grid_points, degree = 3):
         """
         grid_points: grid where the B-spline will be defined

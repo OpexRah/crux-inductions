@@ -54,21 +54,3 @@ def gridsearch(data, params, classifier):
         result_params['mean_test_score'].append(np.mean(classifier_test_score))
 
     return result_params
-
-# Load the iris dataset and prepare it for KAN model
-
-df = pd.read_csv("Task 1/Dataset/iris.csv")
-df["variety"].replace(["Setosa", "Versicolor", "Virginica"], [0., 1., 2.], inplace=True) #replace the categorical labels with numbers
-df = df.sample(frac=1, random_state=0).reset_index(drop=True) #shuffle the dataset
-
-
-params = {'width': [[4,3], [4,10,3]], 'grid': [3, 10], 'k': [3, 4]}
-
-result = gridsearch(df, params, classifier=KAN)
-
-best_params = result['params'][np.argmax(result['mean_test_score'])]
-best_accuracy = np.max(result['mean_test_score'])
-
-print(result)
-
-print(best_params, best_accuracy)
