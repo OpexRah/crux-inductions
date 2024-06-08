@@ -67,6 +67,9 @@ class MLP:
 
             w = np.delete(self.weights[i-1], [0], axis=1)
             error = np.dot(dloss, w)
+
+        loss = np.sum(np.square(error))
+        return loss
         
 
     def index_max_output(self, output):
@@ -132,6 +135,7 @@ class MLP:
         Returns: None
         """
         layers = len(self.weights)
+        history = {"loss": [], "accuracy": []}
 
         for epoch in range(epochs):
             for i in range(len(X)):
@@ -139,8 +143,13 @@ class MLP:
                 x = np.matrix(np.append(1, x))
 
                 activations = self.forward_prop(x, layers)
-                self.back_prop(y, activations, layers)
+                loss = self.back_prop(y, activations, layers)
+                
             
-            if epoch % 10 == 0:
+            if epoch % 2 == 0:
+                history["loss"].append(loss)
+                history["accuracy"].append(self.accuracy(X, Y))
                 print(f"Epoch: {epoch}/{epochs}")
-                print(f"Training Accuracy : {self.accuracy(X, Y)}")
+                print(f"Training Accuracy : {self.accuracy(X, Y)}, Loss: {loss}")
+
+        return history
