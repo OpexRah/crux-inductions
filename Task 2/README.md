@@ -13,7 +13,7 @@ The attention mechanism allows the decoder to selectively focus on different par
 
 The code and implementation of the LSTM encoder decoder can be found in ```LSTM_encoder_decoder.ipynb```. 
 
-Notice the effects of different data sizes:
+Notice the effects of different test-data sizes:
 
 1 month:
 ![](https://github.com/OpexRah/crux-inductions/blob/main/Task%202/plots/Attention_LSTM_NASDAQ100_1month.png)
