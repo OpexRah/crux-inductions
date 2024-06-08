@@ -40,3 +40,5 @@ Data:
 
 Forecasting:
 ![](https://github.com/OpexRah/crux-inductions/blob/main/Task%202/plots/SARIMAX_forecast.png)
+
+While the LSTM model can take in a lot of features, SARIMAX is limited to only one feature. SARIMAX is only good for making forcasting for a short time frame while LSTM is good for longer time frames
