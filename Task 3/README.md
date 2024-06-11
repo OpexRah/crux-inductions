@@ -5,4 +5,6 @@ The ```MAMBA.py``` file contains the implementation of a simple MAMBA architectu
 
 You can find the results in the ```MAMBA_train.ipynb``` file.
 
+I have also added an early stopping function to stop the training in case accuracy does not improve. It stops the training if no improvement in accuracy is seen after a couple of epochs.
+
 [1]:https://arxiv.org/pdf/2312.00752
